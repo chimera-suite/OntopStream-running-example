@@ -1,4 +1,12 @@
-## OntopStream running example
+# OntopStream running example
+
+## Overview
+
+To encourage the adoption of OntopStream, we have decided to provide a running example that simulates an entire analytical pipeline based on the "New York Taxi dataset" of the Ververica's [sql-training repository](https://github.com/ververica/sql-training). The data streams, managed in Apache Kafka, are ingested by Flink and accessed through the S-OBDA paradigm with OntopStream, in the way showed in the figure below.. Data Scientists and Data Analysts can use the demo notebook to execute a set of RSP-QL analytical queries over the OntopStream endpoint. Moreover, Knowledge and Data engineers can learn how to configure and deploy the OntopStream docker endpoint by looking to the `.yml` files and the Setup section.
+
+![](./OntopStream.png)
+
+## Setup and Execution
 
 ### 1. Start the producer (Kafka and Flink)
 
@@ -32,6 +40,8 @@ Open a new teminal window, then run the command:
 sudo docker-compose -f ontop.yml up -d
 ```
 
+__Note__: the DB-descriptive ontology and the Ontop mapping file are stored in the `taxiRides` folder.
+
 ### 4. Start Jupyter
 
 ```
@@ -52,7 +62,7 @@ sudo docker-compose -f ontop.yml down
 sudo docker-compose -f flink-kafka.yml down
 ```
 
-## Tools
+## Additional Tools
 
 Flink's built-in shell to run FlinkSQL queries to compare the results
 
