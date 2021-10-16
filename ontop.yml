@@ -3,7 +3,7 @@ services:
   ontop:
     hostname: ontop
     container_name: ontop
-    image: chimerasuite/ontop-stream:794f48a
+    image: chimerasuite/ontop-stream:2eb7ad5
     environment: 
       - ONTOP_ONTOLOGY_FILE=/opt/ontop/input/taxi.owl
       - ONTOP_MAPPING_FILE=/opt/ontop/input/taxi.obda
