@@ -4,8 +4,8 @@ services:
     hostname: sql-client
     container_name: sql-client
     image: fhueske/flink-sql-training-client:2-FLINK-1.11-scala_2.11
-    build: ./images/client-image
-    command: "java -classpath /opt/data/data-producer.jar com.ververica.sql_training.data_producer.TaxiRecordProducer --input file /opt/data --output kafka kafka:9092 --speedup 0.5"
+    build: ./flink/images/client-image
+    command: "java -classpath /opt/data/data-producer.jar com.ververica.sql_training.data_producer.TaxiRecordProducer --input file /opt/data --output kafka kafka:9092 --speedup 0.2"
     ports:
       - "8083:8083"
     depends_on:
@@ -24,7 +24,7 @@ services:
     hostname: jobmanager
     container_name: jobmanager
     image: fhueske/flink-sql-training-flink-s3:1.11.1-scala_2.11
-    build: ./images/flink-image
+    build: ./flink/images/flink-image
     hostname: "jobmanager"
     expose:
       - "6123"
@@ -37,7 +37,7 @@ services:
     hostname: taskmanager
     container_name: taskmanager
     image: fhueske/flink-sql-training-flink-s3:1.11.1-scala_2.11
-    build: ./images/flink-image
+    build: ./flink/images/flink-image
     expose:
       - "6121"
       - "6122"
@@ -81,7 +81,7 @@ services:
       MYSQL_DATABASE: "flinksql"
       MYSQL_RANDOM_ROOT_PASSWORD: "yes"
     volumes:
-      - ./mysql:/docker-entrypoint-initdb.d
+      - ./flink/mysql:/docker-entrypoint-initdb.d
   minio:
     image: minio/minio:latest
     entrypoint: sh

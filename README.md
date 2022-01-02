@@ -16,16 +16,10 @@ sudo docker-compose -f flink-kafka.yml up -d
 
 ### 2. Start the REST endpoint
 
-Connectct to the `sql-client` remote terminal
-
-```
-sudo docker-compose -f flink-kafka.yml exec sql-client bash
-```
-
 Start the REST endpoint service
 
 ```
-/opt/flink-sql-gateway-0.2-SNAPSHOT/bin/sql-gateway.sh --library /opt/sql-client/lib
+sudo docker-compose -f flink-kafka.yml exec sql-client /opt/flink-sql-gateway-0.2-SNAPSHOT/bin/sql-gateway.sh --library /opt/sql-client/lib
 ```
 
 __Note(1)__: keep the REST endpoint alive until you need the service (don't close the terminal window).
@@ -45,24 +39,13 @@ __Note__: the OntopStream's DB-descriptive ontology and mapping files are stored
 ### 4. Start Jupyter
 
 ```
-sudo docker-compose -f jupyter.yml up
+sudo docker-compose -f jupyter.yml up -d
 ```
+It starts a JupyterLab environment.
 
-It is possible to access the Jupyter web interface using the links printed out from the terminal, which have the access token already integrated. For example, if you have this terminal output:
+You can copypaste the link `http://127.0.0.1:8888/lab?token=TEST` on your browser to access the JupyterLab web UI (`127.0.0.1` means `localhost`).
 
-```
-jupyter    |     To access the notebook, open this file in a browser:
-jupyter    |         file:///home/jovyan/.local/share/jupyter/runtime/nbserver-6-open.html
-jupyter    |     Or copy and paste one of these URLs:
-jupyter    |         http://jupyter:8888/?token=8d16d76366b3e11448795a4521fd38ab6b17afbb3d91787a
-jupyter    |      or http://127.0.0.1:8888/?token=8d16d76366b3e11448795a4521fd38ab6b17afbb3d91787a
-```
-
-You can copypaste the last link `http://127.0.0.1:8888/?token=8d16d76366b3e11448795a4521fd38ab6b17afbb3d91787a` on your browser to access the jupyter notebook web UI (`127.0.0.1` means `localhost`).
-
-Load the notebook `OntopStream_user_notebook.ipynb` in the jupyter environment.
-
-Run the examples inside the demo notebook.
+Run the examples inside the demo notebook loaded (`OntopStream_user_notebook.ipynb`).
 
 ### 5. Stop the demo environment (end of the demo...)
 

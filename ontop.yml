@@ -11,8 +11,8 @@ services:
     ports:
       - "8010:8080"
     volumes:
-      - ./taxiRides:/opt/ontop/input
-      - ./jdbc:/opt/ontop/jdbc
+      - ./ontop/taxiRides:/opt/ontop/input
+      - ./ontop/jdbc:/opt/ontop/jdbc
  
 networks:
   default:

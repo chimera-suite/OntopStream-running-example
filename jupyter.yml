@@ -1,11 +1,17 @@
 version: "3"
 services:
   jupyter:
-    image: chimerasuite/jupyter-notebook:pysparql0.0.6-spark3.0.1-hadoop3.2
+    image: jupyter/base-notebook:lab-3.2.5
     hostname: jupyter
     container_name: jupyter
     ports:
       - "8888:8888"
+    environment:
+      - GRANT_SUDO=yes
+      - JUPYTER_TOKEN=TEST
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - ./jupyter:/home/jovyan
 
 networks: 
   default:
